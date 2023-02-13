@@ -8,7 +8,7 @@
 [summary]: #summary
 
 This feature aims to introduce a standard way of fallibly creating a `[T; N]` from an
-`IntoIterator<Item =T>`. It functions by passing an `IntoIterator<Item = T>` which will result in a
+`IntoIterator<Item = T>`. It functions by passing an `IntoIterator<Item = T>` which will result in a
 `[T; N]`, if and only if the `IntoIterator` holds `>= N` items. Otherwise, it returns an
 `array::IntoIter<T>` with the original `IntoIterator`'s items. The proposed method signature follows:
 
