@@ -43,8 +43,6 @@ means this implements basically for free.
 
 [guide-level-explanation]: #guide-level-explanation
 
-Explain the proposal as if it was already included in the language and you were teaching it to another Rust programmer. That generally means:
-
 `array::try_from_iter` provides a safe API for creating fixed-size _arrays_ `[T; N]` from `IntoIterator`s.
 
 For a somewhat contrived example, say we want to create a `[String; 32]` from a `HashSet<String>`.
