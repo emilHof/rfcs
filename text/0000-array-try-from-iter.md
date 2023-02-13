@@ -131,13 +131,14 @@ Some of them are listed here:
 
 1. Simply use `iter::next_chunk` as suggested [here](https://github.com/rust-lang/rust/pull/107634#discussion_r1103707872).
 2. Using something like an `ArrayVec<T, N>` instead.
+3. Take `&mut iter` rather than ownership of `iter`. This point was raised [here](https://github.com/rust-lang/rust/pull/107979#discussion_r1104451509) and raises the valid question of how to handle `IntoIterator`s with `>N` items. Taking `&mut iter` would allow those leftover items to still be used. While taking `&mut T` does not seem like the standard API for `from` and `try_from` functions, it is still a good valuable to consider.
 3. Implement `TryFrom<IntoIterator<Item = T>>` for `[T; N]`. This is problematic because of
    [Invalid collision with TryFrom implementation? #50133](https://github.com/rust-lang/rust/issues/50133).
 4. New `TryFromIterator` trait. Would likely also require `TryIntoIterator`.
 5. Naming alternatives:  
-   2.1 `try_fill_from`  
-   2.2 `try_collect_from` (suggests it should be used with an `Iterator` directly)  
-   2.3 `from_iter` (does not suggest fallibility)
+   5.1 `try_fill_from`  
+   5.2 `try_collect_from` (suggests it should be used with an `Iterator` directly)  
+   5.3 `from_iter` (does not suggest fallibility)
 
 Adding anything to the `core` and `std` API has lasting implications, and should this be scrutinized from
 all angles.
